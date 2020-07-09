@@ -1,31 +1,26 @@
-package jetray.tictactoe;
+package com.brosinno.tictactoe;
 
 import android.app.Dialog;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import java.util.Random;
 
-public class Afterstart extends AppCompatActivity {
+public class AfterStart extends AppCompatActivity {
 
     boolean easy;
     boolean medium;
     boolean hard;
     boolean impossible;
-    Random r = new Random();
+    Random random = new Random();
 
     int flag = 0, ax = 10, zero = 1, sensorflag = 0, win = 0, i, game = 1, prevrow, prevcol;
     int summ = 0, ctrflag = 0, night = 0, resetchecker = 1, currentgamedonechecker = 0;
@@ -530,54 +525,54 @@ public class Afterstart extends AppCompatActivity {
     }
 
     public int rand() {
-        return r.nextInt(3);
+        return random.nextInt(3);
     }
 
     public void printBoard() {
-        ImageView q1, q2, q3, q4, q5, q6, q7, q8, q9;
+        ImageView qube1, qube2, qube3, qube4, qube5, qube6, qube7, qube8, qube9;
 
-        q1 = (ImageView) findViewById(R.id.tzz);
-        q2 = (ImageView) findViewById(R.id.tzo);
-        q3 = (ImageView) findViewById(R.id.tzt);
-        q4 = (ImageView) findViewById(R.id.toz);
-        q5 = (ImageView) findViewById(R.id.too);
-        q6 = (ImageView) findViewById(R.id.tot);
-        q7 = (ImageView) findViewById(R.id.ttz);
-        q8 = (ImageView) findViewById(R.id.tto);
-        q9 = (ImageView) findViewById(R.id.ttt);
-
-
-        if (tracker[0][0] == 1) q1.setImageResource(R.drawable.x);
-        if (tracker[0][0] == 10) q1.setImageResource(R.drawable.oo);
+        qube1 = (ImageView) findViewById(R.id.tzz);
+        qube2 = (ImageView) findViewById(R.id.tzo);
+        qube3 = (ImageView) findViewById(R.id.tzt);
+        qube4 = (ImageView) findViewById(R.id.toz);
+        qube5 = (ImageView) findViewById(R.id.too);
+        qube6 = (ImageView) findViewById(R.id.tot);
+        qube7 = (ImageView) findViewById(R.id.ttz);
+        qube8 = (ImageView) findViewById(R.id.tto);
+        qube9 = (ImageView) findViewById(R.id.ttt);
 
 
-        if (tracker[0][1] == 1) q2.setImageResource(R.drawable.x);
-        if (tracker[0][1] == 10) q2.setImageResource(R.drawable.oo);
+        if (tracker[0][0] == 1) qube1.setImageResource(R.drawable.letter_x);
+        if (tracker[0][0] == 10) qube1.setImageResource(R.drawable.zero);
 
 
-        if (tracker[0][2] == 1) q3.setImageResource(R.drawable.x);
-        if (tracker[0][2] == 10) q3.setImageResource(R.drawable.oo);
+        if (tracker[0][1] == 1) qube2.setImageResource(R.drawable.letter_x);
+        if (tracker[0][1] == 10) qube2.setImageResource(R.drawable.zero);
 
 
-        if (tracker[1][0] == 1) q4.setImageResource(R.drawable.x);
-        if (tracker[1][0] == 10) q4.setImageResource(R.drawable.oo);
-
-        if (tracker[1][1] == 1) q5.setImageResource(R.drawable.x);
-        if (tracker[1][1] == 10) q5.setImageResource(R.drawable.oo);
+        if (tracker[0][2] == 1) qube3.setImageResource(R.drawable.letter_x);
+        if (tracker[0][2] == 10) qube3.setImageResource(R.drawable.zero);
 
 
-        if (tracker[1][2] == 1) q6.setImageResource(R.drawable.x);
-        if (tracker[1][2] == 10) q6.setImageResource(R.drawable.oo);
+        if (tracker[1][0] == 1) qube4.setImageResource(R.drawable.letter_x);
+        if (tracker[1][0] == 10) qube4.setImageResource(R.drawable.zero);
 
-        if (tracker[2][0] == 1) q7.setImageResource(R.drawable.x);
-        if (tracker[2][0] == 10) q7.setImageResource(R.drawable.oo);
+        if (tracker[1][1] == 1) qube5.setImageResource(R.drawable.letter_x);
+        if (tracker[1][1] == 10) qube5.setImageResource(R.drawable.zero);
 
 
-        if (tracker[2][1] == 1) q8.setImageResource(R.drawable.x);
-        if (tracker[2][1] == 10) q8.setImageResource(R.drawable.oo);
+        if (tracker[1][2] == 1) qube6.setImageResource(R.drawable.letter_x);
+        if (tracker[1][2] == 10) qube6.setImageResource(R.drawable.zero);
 
-        if (tracker[2][2] == 1) q9.setImageResource(R.drawable.x);
-        if (tracker[2][2] == 10) q9.setImageResource(R.drawable.oo);
+        if (tracker[2][0] == 1) qube7.setImageResource(R.drawable.letter_x);
+        if (tracker[2][0] == 10) qube7.setImageResource(R.drawable.zero);
+
+
+        if (tracker[2][1] == 1) qube8.setImageResource(R.drawable.letter_x);
+        if (tracker[2][1] == 10) qube8.setImageResource(R.drawable.zero);
+
+        if (tracker[2][2] == 1) qube9.setImageResource(R.drawable.letter_x);
+        if (tracker[2][2] == 10) qube9.setImageResource(R.drawable.zero);
 
         resetchecker++;
     }
@@ -585,7 +580,7 @@ public class Afterstart extends AppCompatActivity {
 
     public void showDialog(String whoWon, String scoreWon, String whoLose, String scoreLose) {
 
-        final Dialog dialog = new Dialog(Afterstart.this);
+        final Dialog dialog = new Dialog(AfterStart.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_layout);
 //        TextView playerOneScore = dialog.findViewById(R.id.player_one_score);
@@ -798,7 +793,7 @@ public class Afterstart extends AppCompatActivity {
 //    }
 
     private void showExitDialog() {
-        final Dialog dialog = new Dialog(Afterstart.this);
+        final Dialog dialog = new Dialog(AfterStart.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_layout_exit);
         dialog.setCancelable(false);

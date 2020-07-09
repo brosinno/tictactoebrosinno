@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context="jetray.tictactoe.MainActivity">
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             android:imeOptions="actionNext"
             android:inputType="textCapSentences|textPersonName"
             android:textColor="@android:color/black" />
-         
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,7 +77,6 @@
             android:imeActionLabel="DONE"
             android:imeOptions="actionDone"
             android:inputType="textCapSentences|textPersonName" />
-         
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -156,9 +155,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/round"
         android:onClick="startgame"
-        android:layout_marginBottom="15dp"
         android:text="start"
         android:textColor="@android:color/white" />
 
