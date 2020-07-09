@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
+    android:background="#BCE4BE"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".AfterStart"
     tools:showIn="@layout/activity_afterstart">
@@ -26,7 +27,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:fontFamily="casual"
+            android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
             android:text="player 1"
             android:textColor="@android:color/holo_green_dark"
@@ -44,7 +45,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:fontFamily="casual"
+            android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
             android:text="player 2"
             android:textAlignment="center"
@@ -66,7 +67,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:fontFamily="casual"
+            android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
             android:text="0"
             android:textSize="55sp" />
@@ -83,7 +84,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:fontFamily="casual"
+            android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
             android:text="0"
             android:textSize="55sp" />
@@ -238,7 +239,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="monospace"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Game #"
             android:textColor="@android:color/holo_green_dark" />
 
@@ -250,7 +251,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:fontFamily="sans-serif-smallcaps"
+            android:fontFamily="@font/montserrat_bold"
             android:text="1"
             android:textColor="@android:color/holo_green_dark"
             android:textSize="25sp" />

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:background="#BCE4BE"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -16,10 +17,10 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:fontFamily="casual"
+            android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
             android:text="Tic Tac Toe"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#871515"
             android:textSize="50dp"
             android:textStyle="bold" />
 
@@ -28,11 +29,12 @@
             android:id="@+id/playerone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
             android:hint="Player 1 name"
             android:imeActionLabel="NEXT"
             android:imeOptions="actionNext"
             android:inputType="textCapSentences|textPersonName"
-            android:textColor="@android:color/black" />
+            android:textColor="#470909" />
 
 
         <LinearLayout
@@ -49,7 +51,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="casual"
+                android:fontFamily="@font/montserrat_bold"
                 android:gravity="center_vertical"
                 android:text=" X "
                 android:textStyle="bold" />
@@ -59,7 +61,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="casual"
+                android:fontFamily="@font/montserrat_bold"
                 android:gravity="center_vertical"
                 android:text=" O "
                 android:textStyle="bold" />
@@ -73,6 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/montserrat_bold"
             android:hint="Player 2 Name"
             android:imeActionLabel="DONE"
             android:imeOptions="actionDone"
@@ -90,7 +93,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="casual"
+                android:fontFamily="@font/montserrat_bold"
                 android:gravity="center_vertical"
                 android:text=" X "
                 android:textStyle="bold" />
@@ -100,7 +103,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="casual"
+                android:fontFamily="@font/montserrat_bold"
                 android:gravity="center_vertical"
                 android:text=" O "
                 android:textStyle="bold" />
@@ -109,7 +112,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="2">
@@ -124,15 +127,17 @@
                     android:id="@+id/splayer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:text="Single player" />
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Single player"
+                    android:textSize="15sp"/>
 
                 <CheckBox
                     android:id="@+id/tplayer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="casual"
-                    android:text="Two player" />
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Two player"
+                    android:textSize="15sp"/>
 
             </LinearLayout>
 
@@ -141,7 +146,8 @@
                 android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:layout_weight="1"
-                android:hint="difficulty">
+                android:hint="difficulty"
+                android:textSize="15sp" >
 
             </Spinner>
 
@@ -155,11 +161,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/round"
         android:onClick="startgame"
         android:text="start"
-        android:textColor="@android:color/white" />
+        android:textColor="#000000"
+        android:textSize="20sp"/>
 
 
 </RelativeLayout>
