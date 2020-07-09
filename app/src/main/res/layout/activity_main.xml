@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="#BCE4BE"
-    tools:context=".MainActivity">
+    tools:context=".MainHomeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:gravity="center"
             android:text="Tic Tac Toe"
             android:textColor="#871515"
-            android:textSize="50dp"
+            android:textSize="50sp"
             android:textStyle="bold" />
 
 
@@ -36,40 +36,6 @@
             android:inputType="textCapSentences|textPersonName"
             android:textColor="#470909" />
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="2dp"
-            android:weightSum="3">
-
-
-            <CheckBox
-                android:id="@+id/player1x"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserrat_bold"
-                android:gravity="center_vertical"
-                android:text=" X "
-                android:textStyle="bold" />
-
-            <CheckBox
-                android:id="@+id/player1o"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserrat_bold"
-                android:gravity="center_vertical"
-                android:text=" O "
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-
         <EditText
             android:id="@+id/playertwo"
             android:layout_width="match_parent"
@@ -83,37 +49,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:gravity="center"
-            android:weightSum="3">
-
-
-            <CheckBox
-                android:id="@+id/player2x"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserrat_bold"
-                android:gravity="center_vertical"
-                android:text=" X "
-                android:textStyle="bold" />
-
-            <CheckBox
-                android:id="@+id/player2o"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserrat_bold"
-                android:gravity="center_vertical"
-                android:text=" O "
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:gravity="center"
+            android:layout_marginTop="45dp"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -128,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Single player"
+                    android:text="1 Player"
                     android:textSize="15sp"/>
 
                 <CheckBox
@@ -136,7 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Two player"
+                    android:text="2 Players"
                     android:textSize="15sp"/>
 
             </LinearLayout>
@@ -163,10 +101,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
         android:background="@drawable/round"
-        android:onClick="startgame"
-        android:text="start"
+        android:onClick="startGame"
+        android:text="start game"
         android:textColor="#000000"
-        android:textSize="20sp"/>
+        android:textSize="15sp"/>
 
 
 </RelativeLayout>

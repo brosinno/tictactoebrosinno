@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:background="#BCE4BE"
         android:fitsSystemWindows="true"
-        tools:context=".SplashScreen">
+        tools:context=".SplashScreenActivity">
 
         <ImageView
             android:id="@+id/imageView"

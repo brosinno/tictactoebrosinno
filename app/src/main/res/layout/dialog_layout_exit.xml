@@ -17,46 +17,16 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
+            android:text="Exit game?"
             android:padding="4dp"
-            android:text="Do you want to exit?"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
             android:textColor="@android:color/black"
             android:textSize="22sp" />
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="vertical"-->
-            <!--android:weightSum="2">-->
-
-
-            <!--<TextView-->
-                <!--android:id="@+id/player_one_score"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="1"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="8dp"-->
-                <!--android:text="test"-->
-                <!--android:textSize="20sp"-->
-                <!--android:textStyle="bold" />-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/player_two_score"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="1"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="8dp"-->
-                <!--android:text="test"-->
-                <!--android:textSize="20sp"-->
-                <!--android:textStyle="bold" />-->
-
-        <!--</LinearLayout>-->
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="50dp"
             android:gravity="bottom"
             android:orientation="horizontal"
             android:paddingEnd="8dp"

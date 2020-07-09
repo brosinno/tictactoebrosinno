@@ -10,30 +10,37 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import java.util.Random;
 
-public class AfterStart extends AppCompatActivity {
+public class MainGameActivity extends AppCompatActivity {
 
     boolean easy;
     boolean medium;
     boolean hard;
-    boolean impossible;
+    boolean extremelyHard;
     Random random = new Random();
 
-    int flag = 0, ax = 10, zero = 1, sensorflag = 0, win = 0, i, game = 1, prevrow, prevcol;
-    int summ = 0, ctrflag = 0, night = 0, resetchecker = 1, currentgamedonechecker = 0;
-    int score1 = 0, score2 = 0, drawchecker = 0;
+    int flag = 0;
+    int ax = 10;
+    int zero = 1;
+    int win = 0;
+    int i;
+    int game = 1;
+    int gameSum = 0;
+    int ctrFlag = 0;
+    int resetChecker = 1;
+    int currentGameDoneChecker = 0;
+    int player1Score = 0, player2Score = 0, drawchecker = 0;
     static int[][] tracker = new int[3][3];
-    int[] sum = new int[8];
-    static int[][] buttonpressed = new int[3][3];
+    int[] boardSum = new int[8];
+    static int[][] buttonPressed = new int[3][3];
 
     boolean player1ax;
-    boolean selectedsingleplayer;
+    boolean selectedSinglePlayer;
 
-    TextView p1;
-    TextView p2;
+    TextView player1TV;
+    TextView player2TV;
     CharSequence player1 = "Player 1";
     CharSequence player2 = "Player 2";
 
@@ -45,17 +52,14 @@ public class AfterStart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_afterstart);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         CharSequence[] players = getIntent().getCharSequenceArrayExtra("playersnames");
         player1ax = getIntent().getBooleanExtra("player1ax", true);
-        selectedsingleplayer = getIntent().getBooleanExtra("selectedsingleplayer", true);
+        selectedSinglePlayer = getIntent().getBooleanExtra("selectedsingleplayer", true);
 
         easy = getIntent().getBooleanExtra("easy", false);
         medium = getIntent().getBooleanExtra("medium", false);
         hard = getIntent().getBooleanExtra("hard", false);
-        impossible = getIntent().getBooleanExtra("impossible", false);
+        extremelyHard = getIntent().getBooleanExtra("extremely_hard", false);
 
 
         if (player1ax) {
@@ -66,175 +70,161 @@ public class AfterStart extends AppCompatActivity {
 
         player1 = players[0];
         player2 = players[1];
-        p1 = (TextView) findViewById(R.id.playerone);
-        p2 = (TextView) findViewById(R.id.playertwo);
+        player1TV = findViewById(R.id.playerone);
+        player2TV = findViewById(R.id.playertwo);
 
-        p1.setText(player1);
-        p2.setText(player2);
+        player1TV.setText(player1);
+        player2TV.setText(player2);
 
-        Toast.makeText(this, "" + player1 + "\'s turn", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + player1 + "\'s turn", Toast.LENGTH_LONG).show();
 
     }
 
 
-    public void kzz(View view) {
+    public void upperLeft(View view) {
 
 
-        if (win == 0 && buttonpressed[0][0] == 0) {
+        if (win == 0 && buttonPressed[0][0] == 0) {
             if (flag % 2 == 0)
                 tracker[0][0] = ax;
             else
                 tracker[0][0] = zero;
 
             printBoard();
-            winchecker();
-            cpuplay();
+            winCheck();
+            checkCPUPlay();
             flag++;
-            buttonpressed[0][0]++;
+            buttonPressed[0][0]++;
         }
     }
 
 
-    public void kzo(View view) {
+    public void upperCenter(View view) {
 
-        if (win == 0 && buttonpressed[0][1] == 0) {
+        if (win == 0 && buttonPressed[0][1] == 0) {
             if (flag % 2 == 0) tracker[0][1] = ax;
             else tracker[0][1] = zero;
 
             printBoard();
-            winchecker();
-            cpuplay();
-            buttonpressed[0][1]++;
+            winCheck();
+            checkCPUPlay();
+            buttonPressed[0][1]++;
             flag++;
         }
     }
 
-    public void kzt(View view) {
-        if (win == 0 && buttonpressed[0][2] == 0) {
+    public void upperRight(View view) {
+        if (win == 0 && buttonPressed[0][2] == 0) {
             if (flag % 2 == 0) tracker[0][2] = ax;
             else tracker[0][2] = zero;
 
             printBoard();
-            winchecker();
-            cpuplay();
-            buttonpressed[0][2]++;
+            winCheck();
+            checkCPUPlay();
+            buttonPressed[0][2]++;
             flag++;
         }
     }
 
-    public void koz(View v) {
-        if (win == 0 && buttonpressed[1][0] == 0) {
+    public void middleLeft(View v) {
+        if (win == 0 && buttonPressed[1][0] == 0) {
             if (flag % 2 == 0) tracker[1][0] = ax;
             else tracker[1][0] = zero;
 
             printBoard();
-            winchecker();
-            cpuplay();
+            winCheck();
+            checkCPUPlay();
 
-            ++buttonpressed[1][0];
+            ++buttonPressed[1][0];
             flag++;
         }
     }
 
-    public void koo(View v) {
-        if (win == 0 && buttonpressed[1][1] == 0) {
+    public void middleCenter(View v) {
+        if (win == 0 && buttonPressed[1][1] == 0) {
             if (flag % 2 == 0) tracker[1][1] = ax;
             else tracker[1][1] = zero;
             printBoard();
-            winchecker();
-            cpuplay();
-            ++buttonpressed[1][1];
+            winCheck();
+            checkCPUPlay();
+            ++buttonPressed[1][1];
             flag++;
         }
     }
 
-    public void kot(View v) {
-        if (win == 0 && buttonpressed[1][2] == 0) {
+    public void middleRight(View v) {
+        if (win == 0 && buttonPressed[1][2] == 0) {
             if (flag % 2 == 0) tracker[1][2] = ax;
             else tracker[1][2] = zero;
 
             printBoard();
-            winchecker();
-            cpuplay();
-            ++buttonpressed[1][2];
+            winCheck();
+            checkCPUPlay();
+            ++buttonPressed[1][2];
             flag++;
         }
     }
 
-    public void ktz(View v) {
-        if (win == 0 && buttonpressed[2][0] == 0) {
+    public void bottomLeft(View v) {
+        if (win == 0 && buttonPressed[2][0] == 0) {
             if (flag % 2 == 0) tracker[2][0] = ax;
             else tracker[2][0] = zero;
 
             printBoard();
-            winchecker();
-            cpuplay();
-            ++buttonpressed[2][0];
+            winCheck();
+            checkCPUPlay();
+            ++buttonPressed[2][0];
             flag++;
         }
     }
 
-    public void kto(View v) {
-        if (win == 0 && buttonpressed[2][1] == 0) {
+    public void bottomCenter(View v) {
+        if (win == 0 && buttonPressed[2][1] == 0) {
             if (flag % 2 == 0) tracker[2][1] = ax;
             else tracker[2][1] = zero;
             printBoard();
-            winchecker();
-            cpuplay();
-            ++buttonpressed[2][1];
+            winCheck();
+            checkCPUPlay();
+            ++buttonPressed[2][1];
             flag++;
         }
     }
 
-    public void ktt(View v) {
-        if (win == 0 && buttonpressed[2][2] == 0) {
+    public void bottomRight(View v) {
+        if (win == 0 && buttonPressed[2][2] == 0) {
             if (flag % 2 == 0) tracker[2][2] = ax;
             else tracker[2][2] = zero;
 
             printBoard();
-            winchecker();
-            cpuplay();
-            ++buttonpressed[2][2];
+            winCheck();
+            checkCPUPlay();
+            ++buttonPressed[2][2];
             flag++;
         }
     }
 
-    public void cpuplay() {
-        if ((selectedsingleplayer) && (win == 0)) {
+    public void checkCPUPlay() {
+        if ((selectedSinglePlayer) && (win == 0)) {
 
 
-            if (ifcpuwin()) ;
-            else if (ifopowin()) ;
-            else if (emptycentre()) ;
-            else if (emptycorner()) ;
-            else emptyany();
+            if (checkIfCPUWins()) ;
+            else if (ifOpponentWins()) ;
+            else if (isEmptyCenter()) ;
+            else if (isEmptyCorner()) ;
+            else isEmptyAny();
 
-
-            /***  final Handler handler = new Handler();
-             Timer t = new Timer();
-             t.schedule(new TimerTask() {
-             public void run() {
-             handler.post(new Runnable() {
-             public void run() {
-
-             //add code to be executed after a pause
-
-             }
-             });
-             }
-             }, 80);****/
             printBoard();
-            winchecker();
+            winCheck();
 
             flag++;
             return;
         }
     }
 
-    public boolean ifcpuwin() {
+    public boolean checkIfCPUWins() {
         if (!easy) {
             for (i = 0; i < 8; i++) {
-                if (sum[i] == 2 * zero) {
+                if (boardSum[i] == 2 * zero) {
                     if (i == 0) {
                         for (int x = 0; x < 3; x++)
                             if (tracker[0][x] == 0)
@@ -295,16 +285,16 @@ public class AfterStart extends AppCompatActivity {
     }
 
 
-    public boolean ifopowin() {
+    public boolean ifOpponentWins() {
         if ((!easy) || (!medium)) {
 
             for (i = 0; i < 8; i++) {
-                if (sum[i] == 2 * ax) {
+                if (boardSum[i] == 2 * ax) {
                     if (i == 0) {
                         for (int x = 0; x < 3; x++)
                             if (tracker[0][x] == 0) {
                                 tracker[0][x] = zero;
-                                buttonpressed[0][x]++;
+                                buttonPressed[0][x]++;
                             }
                     }
 
@@ -312,14 +302,14 @@ public class AfterStart extends AppCompatActivity {
                         for (int x = 0; x < 3; x++)
                             if (tracker[1][x] == 0) {
                                 tracker[1][x] = zero;
-                                buttonpressed[1][x]++;
+                                buttonPressed[1][x]++;
                             }
                     }
                     if (i == 2) {
                         for (int x = 0; x < 3; x++)
                             if (tracker[2][x] == 0) {
                                 tracker[2][x] = zero;
-                                buttonpressed[2][x]++;
+                                buttonPressed[2][x]++;
                             }
                     }
 
@@ -327,7 +317,7 @@ public class AfterStart extends AppCompatActivity {
                         for (int x = 0; x < 3; x++)
                             if (tracker[x][0] == 0) {
                                 tracker[x][0] = zero;
-                                buttonpressed[x][0]++;
+                                buttonPressed[x][0]++;
                             }
                     }
 
@@ -336,7 +326,7 @@ public class AfterStart extends AppCompatActivity {
                         for (int x = 0; x < 3; x++)
                             if (tracker[x][1] == 0) {
                                 tracker[x][1] = zero;
-                                buttonpressed[x][1]++;
+                                buttonPressed[x][1]++;
                             }
                     }
 
@@ -345,7 +335,7 @@ public class AfterStart extends AppCompatActivity {
                         for (int x = 0; x < 3; x++)
                             if (tracker[x][2] == 0) {
                                 tracker[x][2] = zero;
-                                buttonpressed[x][2]++;
+                                buttonPressed[x][2]++;
                             }
                     }
                     if (i == 6) {
@@ -355,7 +345,7 @@ public class AfterStart extends AppCompatActivity {
                                 if (x == y)
                                     if (tracker[x][y] == 0) {
                                         tracker[x][y] = zero;
-                                        buttonpressed[x][y]++;
+                                        buttonPressed[x][y]++;
                                     }
 
 
@@ -363,13 +353,13 @@ public class AfterStart extends AppCompatActivity {
                     if (i == 7) {
                         if (tracker[0][2] == 0) {
                             tracker[0][2] = zero;
-                            buttonpressed[0][2]++;
+                            buttonPressed[0][2]++;
                         } else if (tracker[1][1] == 0) {
                             tracker[1][1] = zero;
-                            buttonpressed[1][1]++;
+                            buttonPressed[1][1]++;
                         } else {
                             tracker[2][0] = zero;
-                            buttonpressed[2][0]++;
+                            buttonPressed[2][0]++;
                         }
 
 
@@ -382,53 +372,53 @@ public class AfterStart extends AppCompatActivity {
         return false;
     }
 
-    public boolean emptycentre() {
-        if (impossible || hard) {
+    public boolean isEmptyCenter() {
+        if (extremelyHard || hard) {
             if (tracker[1][1] == 0) {
                 tracker[1][1] = zero;
-                buttonpressed[1][1]++;
+                buttonPressed[1][1]++;
                 return true;
             }
         }
         return false;
     }
 
-    public boolean emptycorner() {
+    public boolean isEmptyCorner() {
 
 
-        if (hard || impossible)
+        if (hard || extremelyHard)
             if (((tracker[0][0] + tracker[2][2]) == 2 * ax) || ((tracker[0][2] + tracker[2][0]) == 2 * ax)) {
                 for (int k = 0; k < 3; k++)
                     for (int j = 0; j < 3; j++)
                         if ((k + j) % 2 == 1) {
                             if (tracker[k][j] == 0)
                                 tracker[k][j] = zero;
-                            buttonpressed[k][j]++;
+                            buttonPressed[k][j]++;
                             return true;
                         }
             }
 
 
-        if (impossible)
-            if (sum[6] == zero || sum[7] == zero) {
-                if (sum[6] == zero) {
-                    if ((sum[0] + sum[3]) > (sum[2] + sum[5])) {
+        if (extremelyHard)
+            if (boardSum[6] == zero || boardSum[7] == zero) {
+                if (boardSum[6] == zero) {
+                    if ((boardSum[0] + boardSum[3]) > (boardSum[2] + boardSum[5])) {
                         tracker[0][0] = zero;
-                        buttonpressed[0][0]++;
+                        buttonPressed[0][0]++;
                     } else {
                         tracker[2][2] = zero;
-                        buttonpressed[2][2]++;
+                        buttonPressed[2][2]++;
                     }
                     return true;
                 }
 
-                if (sum[7] == zero) {
-                    if ((sum[0] + sum[5]) > (sum[3] + sum[2])) {
+                if (boardSum[7] == zero) {
+                    if ((boardSum[0] + boardSum[5]) > (boardSum[3] + boardSum[2])) {
                         tracker[0][2] = zero;
-                        buttonpressed[0][2]++;
+                        buttonPressed[0][2]++;
                     } else {
                         tracker[2][0] = zero;
-                        buttonpressed[2][0]++;
+                        buttonPressed[2][0]++;
                     }
                     return true;
                 }
@@ -440,12 +430,12 @@ public class AfterStart extends AppCompatActivity {
             if (tracker[0][i] == ax) {
                 if (tracker[0][0] == 0) {
                     tracker[0][0] = zero;
-                    buttonpressed[0][0]++;
+                    buttonPressed[0][0]++;
                     return true;
                 }
                 if (tracker[0][2] == 0) {
                     tracker[0][2] = zero;
-                    buttonpressed[0][2]++;
+                    buttonPressed[0][2]++;
                     return true;
                 }
             }
@@ -456,12 +446,12 @@ public class AfterStart extends AppCompatActivity {
             if (tracker[2][i] == ax) {
                 if (tracker[2][0] == 0) {
                     tracker[2][0] = zero;
-                    buttonpressed[2][0]++;
+                    buttonPressed[2][0]++;
                     return true;
                 }
                 if (tracker[2][2] == 0) {
                     tracker[2][2] = zero;
-                    buttonpressed[2][2]++;
+                    buttonPressed[2][2]++;
                     return true;
                 }
             }
@@ -470,12 +460,12 @@ public class AfterStart extends AppCompatActivity {
             if (tracker[i][0] == ax) {
                 if (tracker[0][0] == 0) {
                     tracker[0][0] = zero;
-                    buttonpressed[0][0]++;
+                    buttonPressed[0][0]++;
                     return true;
                 }
                 if (tracker[2][0] == 0) {
                     tracker[2][0] = zero;
-                    buttonpressed[2][0]++;
+                    buttonPressed[2][0]++;
                     return true;
                 }
             }
@@ -484,12 +474,12 @@ public class AfterStart extends AppCompatActivity {
             if (tracker[i][2] == ax) {
                 if (tracker[0][2] == 0) {
                     tracker[0][2] = zero;
-                    buttonpressed[0][2]++;
+                    buttonPressed[0][2]++;
                     return true;
                 }
                 if (tracker[2][2] == 0) {
                     tracker[2][2] = zero;
-                    buttonpressed[2][2]++;
+                    buttonPressed[2][2]++;
                     return true;
                 }
             }
@@ -498,16 +488,16 @@ public class AfterStart extends AppCompatActivity {
 
     }
 
-    public void emptyany() {
+    public void isEmptyAny() {
 
-        if (ctrflag == 0)
+        if (ctrFlag == 0)
             while (true) {
-                int x = rand();
-                int y = rand();
+                int x = random();
+                int y = random();
 
                 if (tracker[x][y] == 0) {
                     tracker[x][y] = zero;
-                    buttonpressed[x][y]++;
+                    buttonPressed[x][y]++;
                     return;
 
                 }
@@ -517,29 +507,29 @@ public class AfterStart extends AppCompatActivity {
             for (int y = 0; y < 3; y++)
                 if (tracker[x][y] == 0) {
                     tracker[x][y] = zero;
-                    buttonpressed[x][y]++;
+                    buttonPressed[x][y]++;
                     return;
                 }
 
 
     }
 
-    public int rand() {
+    public int random() {
         return random.nextInt(3);
     }
 
     public void printBoard() {
         ImageView qube1, qube2, qube3, qube4, qube5, qube6, qube7, qube8, qube9;
 
-        qube1 = (ImageView) findViewById(R.id.tzz);
-        qube2 = (ImageView) findViewById(R.id.tzo);
-        qube3 = (ImageView) findViewById(R.id.tzt);
-        qube4 = (ImageView) findViewById(R.id.toz);
-        qube5 = (ImageView) findViewById(R.id.too);
-        qube6 = (ImageView) findViewById(R.id.tot);
-        qube7 = (ImageView) findViewById(R.id.ttz);
-        qube8 = (ImageView) findViewById(R.id.tto);
-        qube9 = (ImageView) findViewById(R.id.ttt);
+        qube1 = findViewById(R.id.tzz);
+        qube2 = findViewById(R.id.tzo);
+        qube3 = findViewById(R.id.tzt);
+        qube4 = findViewById(R.id.toz);
+        qube5 = findViewById(R.id.too);
+        qube6 = findViewById(R.id.tot);
+        qube7 = findViewById(R.id.ttz);
+        qube8 = findViewById(R.id.tto);
+        qube9 = findViewById(R.id.ttt);
 
 
         if (tracker[0][0] == 1) qube1.setImageResource(R.drawable.letter_x);
@@ -574,24 +564,20 @@ public class AfterStart extends AppCompatActivity {
         if (tracker[2][2] == 1) qube9.setImageResource(R.drawable.letter_x);
         if (tracker[2][2] == 10) qube9.setImageResource(R.drawable.zero);
 
-        resetchecker++;
+        resetChecker++;
     }
 
 
     public void showDialog(String whoWon, String scoreWon, String whoLose, String scoreLose) {
 
-        final Dialog dialog = new Dialog(AfterStart.this);
+        final Dialog dialog = new Dialog(MainGameActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_layout);
-//        TextView playerOneScore = dialog.findViewById(R.id.player_one_score);
-//        TextView playerTwoScore = dialog.findViewById(R.id.player_two_score);
         TextView titleText = dialog.findViewById(R.id.title_text);
         dialog.setCancelable(false);
         dialog.show();
 
         titleText.setText(whoWon);
-//        playerOneScore.setText(whoWon+" Score -> "+scoreWon);
-//        playerTwoScore.setText(whoLose+"Score -> "+scoreLose);
 
         Button resetButton = dialog.findViewById(R.id.reset_button);
         Button playAgainButton = dialog.findViewById(R.id.play_again_button);
@@ -600,7 +586,7 @@ public class AfterStart extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                doreset();
+                reset();
             }
         });
 
@@ -608,91 +594,91 @@ public class AfterStart extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                playmore();
+                playMoreGame();
             }
         });
     }
 
-    public void winchecker() {
-        ctrflag++;
-        sum[0] = tracker[0][0] + tracker[0][1] + tracker[0][2];
-        sum[1] = tracker[1][0] + tracker[1][1] + tracker[1][2];
-        sum[2] = tracker[2][0] + tracker[2][1] + tracker[2][2];
-        sum[3] = tracker[0][0] + tracker[1][0] + tracker[2][0];
-        sum[4] = tracker[0][1] + tracker[1][1] + tracker[2][1];
-        sum[5] = tracker[0][2] + tracker[1][2] + tracker[2][2];
-        sum[6] = tracker[0][0] + tracker[1][1] + tracker[2][2];
-        sum[7] = tracker[0][2] + tracker[1][1] + tracker[2][0];
+    public void winCheck() {
+        ctrFlag++;
+        boardSum[0] = tracker[0][0] + tracker[0][1] + tracker[0][2];
+        boardSum[1] = tracker[1][0] + tracker[1][1] + tracker[1][2];
+        boardSum[2] = tracker[2][0] + tracker[2][1] + tracker[2][2];
+        boardSum[3] = tracker[0][0] + tracker[1][0] + tracker[2][0];
+        boardSum[4] = tracker[0][1] + tracker[1][1] + tracker[2][1];
+        boardSum[5] = tracker[0][2] + tracker[1][2] + tracker[2][2];
+        boardSum[6] = tracker[0][0] + tracker[1][1] + tracker[2][2];
+        boardSum[7] = tracker[0][2] + tracker[1][1] + tracker[2][0];
 
 
-        currentgamedonechecker++;
-        resetchecker++;
+        currentGameDoneChecker++;
+        resetChecker++;
 
         for (int i = 0; i < 8; i++)
-            if (sum[i] == 3 || sum[i] == 30) {
+            if (boardSum[i] == 3 || boardSum[i] == 30) {
                 win++;
-                if ((sum[i] == 3) && (ax == 1)) {
-                    score1++;
-                    TextView q1 = (TextView) findViewById(R.id.p1score);
-                    q1.setText("" + score1);
-                    showDialog("" + player1 + " won!", "" + score1, "" + player2, "" + score2);
+                if ((boardSum[i] == 3) && (ax == 1)) {
+                    player1Score++;
+                    TextView q1 = findViewById(R.id.p1score);
+                    q1.setText("" + player1Score);
+                    showDialog("" + player1 + " won!", "" + player1Score, "" + player2, "" + player2Score);
 
                 }
-                if ((sum[i] == 3) && (zero == 1)) {
-                    score2++;
-                    TextView q1 = (TextView) findViewById(R.id.p2score);
-                    q1.setText("" + score2);
-                    showDialog("" + player2 + " won!", "" + score2, "" + player1, "" + score1);
+                if ((boardSum[i] == 3) && (zero == 1)) {
+                    player2Score++;
+                    TextView q1 = findViewById(R.id.p2score);
+                    q1.setText("" + player2Score);
+                    showDialog("" + player2 + " won!", "" + player2Score, "" + player1, "" + player1Score);
 
                 }
-                if ((sum[i] == 30) && (ax == 10)) {
-                    score1++;
-                    TextView q1 = (TextView) findViewById(R.id.p1score);
-                    q1.setText("" + score1);
-                    showDialog("" + player1 + " won!", "" + score1, "" + player2, "" + score2);
+                if ((boardSum[i] == 30) && (ax == 10)) {
+                    player1Score++;
+                    TextView q1 = findViewById(R.id.p1score);
+                    q1.setText("" + player1Score);
+                    showDialog("" + player1 + " won!", "" + player1Score, "" + player2, "" + player2Score);
 
                 }
-                if ((sum[i] == 30) && (zero == 10)) {
-                    score2++;
-                    TextView q1 = (TextView) findViewById(R.id.p2score);
-                    q1.setText("" + score2);
-                    showDialog("" + player2 + " won!", "" + score2, "" + player1, "" + score1);
+                if ((boardSum[i] == 30) && (zero == 10)) {
+                    player2Score++;
+                    TextView q1 = findViewById(R.id.p2score);
+                    q1.setText("" + player2Score);
+                    showDialog("" + player2 + " won!", "" + player2Score, "" + player1, "" + player1Score);
 
                 }
 
             }
 
-        if ((ctrflag == 9) && (win == 0)) {
-            showDialog("This is a draw !", "" + score1, "" + player2, "" + score2);
+        if ((ctrFlag == 9) && (win == 0)) {
+            showDialog("This is a draw !", "" + player1Score, "" + player2, "" + player2Score);
 
             drawchecker++;
         }
 
 
-    }  //end winchecker()
+    }
 
-    private void playmore() {
+    private void playMoreGame() {
         if ((drawchecker > 0) || (win > 0)) {
             game++;
-            TextView qq = (TextView) findViewById(R.id.gamenumber);
+            TextView qq = findViewById(R.id.gamenumber);
             qq.setText("" + game);
 
             for (int i = 0; i < 8; i++)
-                sum[i] = 0;
+                boardSum[i] = 0;
 
             drawchecker = 0;
 
 
             ImageView q1, q2, q3, q4, q5, q6, q7, q8, q9;
-            q1 = (ImageView) findViewById(R.id.tzz);
-            q2 = (ImageView) findViewById(R.id.tzo);
-            q3 = (ImageView) findViewById(R.id.tzt);
-            q4 = (ImageView) findViewById(R.id.toz);
-            q5 = (ImageView) findViewById(R.id.too);
-            q6 = (ImageView) findViewById(R.id.tot);
-            q7 = (ImageView) findViewById(R.id.ttz);
-            q8 = (ImageView) findViewById(R.id.tto);
-            q9 = (ImageView) findViewById(R.id.ttt);
+            q1 = findViewById(R.id.tzz);
+            q2 = findViewById(R.id.tzo);
+            q3 = findViewById(R.id.tzt);
+            q4 = findViewById(R.id.toz);
+            q5 = findViewById(R.id.too);
+            q6 = findViewById(R.id.tot);
+            q7 = findViewById(R.id.ttz);
+            q8 = findViewById(R.id.tto);
+            q9 = findViewById(R.id.ttt);
             q1.setImageDrawable(null);
             q2.setImageDrawable(null);
             q3.setImageDrawable(null);
@@ -705,7 +691,7 @@ public class AfterStart extends AppCompatActivity {
 
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
-                    buttonpressed[i][j] = 0;
+                    buttonPressed[i][j] = 0;
 
             for (int i = 0; i < 3; i++)
                 for (int j = 0; j < 3; j++)
@@ -713,24 +699,24 @@ public class AfterStart extends AppCompatActivity {
 
 
             if ((game + 1) % 2 == 0)
-                Toast.makeText(this, "" + player1 + "\'s turn", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "" + player1 + "\'s turn", Toast.LENGTH_LONG).show();
             else
-                Toast.makeText(this, "" + player2 + "\'s turn", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "" + player2 + "\'s turn", Toast.LENGTH_LONG).show();
             win = 0;
-            summ = 0;
-            ctrflag = 0;
+            gameSum = 0;
+            ctrFlag = 0;
             flag = (game + 1) % 2;
-            currentgamedonechecker = 0;
+            currentGameDoneChecker = 0;
 
-            if (selectedsingleplayer && (game % 2 == 0))
-                cpuplay();
+            if (selectedSinglePlayer && (game % 2 == 0))
+                checkCPUPlay();
         }
     }
 
 
-    public void doreset() {
+    public void reset() {
 
-        TextView qq = (TextView) findViewById(R.id.gamenumber);
+        TextView qq = findViewById(R.id.gamenumber);
         qq.setText("" + 1);
 
 
@@ -740,19 +726,19 @@ public class AfterStart extends AppCompatActivity {
 
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                buttonpressed[i][j] = 0;
+                buttonPressed[i][j] = 0;
 
         ImageView q1, q2, q3, q4, q5, q6, q7, q8, q9;
 
-        q1 = (ImageView) findViewById(R.id.tzz);
-        q2 = (ImageView) findViewById(R.id.tzo);
-        q3 = (ImageView) findViewById(R.id.tzt);
-        q4 = (ImageView) findViewById(R.id.toz);
-        q5 = (ImageView) findViewById(R.id.too);
-        q6 = (ImageView) findViewById(R.id.tot);
-        q7 = (ImageView) findViewById(R.id.ttz);
-        q8 = (ImageView) findViewById(R.id.tto);
-        q9 = (ImageView) findViewById(R.id.ttt);
+        q1 = findViewById(R.id.tzz);
+        q2 = findViewById(R.id.tzo);
+        q3 = findViewById(R.id.tzt);
+        q4 = findViewById(R.id.toz);
+        q5 = findViewById(R.id.too);
+        q6 = findViewById(R.id.tot);
+        q7 = findViewById(R.id.ttz);
+        q8 = findViewById(R.id.tto);
+        q9 = findViewById(R.id.ttt);
         q1.setImageDrawable(null);
         q2.setImageDrawable(null);
         q3.setImageDrawable(null);
@@ -766,34 +752,26 @@ public class AfterStart extends AppCompatActivity {
 
         win = 0;
         drawchecker = 0;
-        summ = 0;
-        resetchecker = 0;
-        ctrflag = 0;
-        score1 = 0;
-        score2 = 0;
+        gameSum = 0;
+        resetChecker = 0;
+        ctrFlag = 0;
+        player1Score = 0;
+        player2Score = 0;
         game = 1;
         flag = 0;
-        currentgamedonechecker = 0;
-        TextView qqq = (TextView) findViewById(R.id.p1score);
-        qqq.setText("" + score1);
-        TextView qqqq = (TextView) findViewById(R.id.p2score);
-        qqqq.setText("" + score2);
+        currentGameDoneChecker = 0;
+        TextView player1Score = findViewById(R.id.p1score);
+        player1Score.setText("" + this.player1Score);
+        TextView player2Score = findViewById(R.id.p2score);
+        player2Score.setText("" + this.player2Score);
 
-        Toast.makeText(this, "" + player1 + "\'s turn", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + player1 + "\'s turn", Toast.LENGTH_LONG).show();
 
 
     }
 
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-
     private void showExitDialog() {
-        final Dialog dialog = new Dialog(AfterStart.this);
+        final Dialog dialog = new Dialog(MainGameActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_layout_exit);
         dialog.setCancelable(false);
@@ -806,7 +784,7 @@ public class AfterStart extends AppCompatActivity {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                doreset();
+                reset();
                 finish();
             }
         });
@@ -823,40 +801,6 @@ public class AfterStart extends AppCompatActivity {
     public void onBackPressed() {
         showExitDialog();
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.exit) {
-//            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            intent.putExtra("EXIT", true);
-//            doreset();
-//            startActivity(intent);
-//        }
-//
-//        if (id == R.id.daynightmode) {
-//
-//            if (night % 2 == 0) {
-//                View view = this.getWindow().getDecorView();
-//                view.setBackgroundColor(Color.parseColor("#000000"));
-//                item.setTitle("Day Mode");
-//            } else {
-//                View view = this.getWindow().getDecorView();
-//                view.setBackgroundColor(Color.parseColor("#FFFFFF"));
-//                item.setTitle("Night Mode");
-//            }
-//            night++;
-//        }
-//
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 }
 
 

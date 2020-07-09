@@ -4,20 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BCE4BE"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:background="#BCE4BE"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".AfterStart"
-    tools:showIn="@layout/activity_afterstart">
+    tools:context=".MainGameActivity">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="15dp"
-        android:layout_weight=".6"
+        android:layout_marginTop="20dp"
+        android:layout_weight=".3"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="2.1">
@@ -29,7 +28,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
-            android:text="player 1"
+            android:text="Player 1"
             android:textColor="@android:color/holo_green_dark"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -47,7 +46,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
-            android:text="player 2"
+            android:text="Player 2"
             android:textAlignment="center"
             android:textColor="@android:color/holo_green_dark"
             android:textSize="22sp"
@@ -58,8 +57,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight=".4"
         android:gravity="center"
+        android:layout_marginBottom="30dp"
         android:weightSum="2.1">
 
         <TextView
@@ -70,7 +70,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
             android:text="0"
-            android:textSize="55sp" />
+            android:textSize="45sp" />
 
 
         <View
@@ -87,24 +87,35 @@
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
             android:text="0"
-            android:textSize="55sp" />
+            android:textSize="45sp" />
 
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_thickness"
+        android:layout_marginTop="10dp"
+        android:background="@color/lineColor" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/line_thickness"
+            android:layout_height="match_parent"
+            android:background="@color/lineColor" />
 
         <ImageView
             android:id="@+id/tzz"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="kzz" />
+            android:onClick="upperLeft" />
 
         <View
             android:layout_width="@dimen/line_thickness"
@@ -116,7 +127,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="kzo" />
+            android:onClick="upperCenter" />
 
         <View
             android:layout_width="@dimen/line_thickness"
@@ -128,9 +139,12 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="kzt" />
+            android:onClick="upperRight" />
 
-
+        <View
+            android:layout_width="@dimen/line_thickness"
+            android:layout_height="match_parent"
+            android:background="@color/lineColor" />
     </LinearLayout>
 
 
@@ -146,12 +160,17 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
+        <View
+            android:layout_width="@dimen/line_thickness"
+            android:layout_height="match_parent"
+            android:background="@color/lineColor" />
+
         <ImageView
             android:id="@+id/toz"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="koz" />
+            android:onClick="middleLeft" />
 
         <View
             android:layout_width="@dimen/line_thickness"
@@ -163,7 +182,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="koo" />
+            android:onClick="middleCenter" />
 
         <View
             android:layout_width="@dimen/line_thickness"
@@ -175,8 +194,12 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="kot" />
+            android:onClick="middleRight" />
 
+        <View
+            android:layout_width="@dimen/line_thickness"
+            android:layout_height="match_parent"
+            android:background="@color/lineColor" />
 
     </LinearLayout>
 
@@ -191,12 +214,17 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
+        <View
+            android:layout_width="@dimen/line_thickness"
+            android:layout_height="match_parent"
+            android:background="@color/lineColor" />
+
         <ImageView
             android:id="@+id/ttz"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="ktz" />
+            android:onClick="bottomLeft" />
 
         <View
             android:layout_width="@dimen/line_thickness"
@@ -208,7 +236,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="kto" />
+            android:onClick="bottomCenter" />
 
         <View
             android:layout_width="@dimen/line_thickness"
@@ -220,11 +248,21 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="ktt" />
+            android:onClick="bottomRight" />
+
+        <View
+            android:layout_width="@dimen/line_thickness"
+            android:layout_height="match_parent"
+            android:background="@color/lineColor" />
 
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_thickness"
+        android:layout_marginBottom="10dp"
+        android:background="@color/lineColor" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -240,7 +278,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Game #"
+            android:text="No of games: "
             android:textColor="@android:color/holo_green_dark" />
 
 
@@ -250,12 +288,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="1"
             android:textColor="@android:color/holo_green_dark"
             android:textSize="25sp" />
-
 
     </LinearLayout>
 
