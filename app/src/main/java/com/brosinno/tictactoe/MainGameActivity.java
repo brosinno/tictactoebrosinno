@@ -87,7 +87,7 @@ public class MainGameActivity extends AppCompatActivity {
         // INTER AD
         MobileAds.initialize(this);
         interstitialAd1 = new InterstitialAd(this);
-        interstitialAd1.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd1.setAdUnitId("ca-app-pub-6468508598699829/1895179879");
         interstitialAd1.loadAd(new AdRequest.Builder().build());
 
 
