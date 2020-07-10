@@ -113,6 +113,7 @@
         <ImageView
             android:id="@+id/tzz"
             android:layout_width="0dp"
+            android:background="#030A3A"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="upperLeft" />
@@ -120,11 +121,12 @@
         <View
             android:layout_width="@dimen/line_thickness"
             android:layout_height="match_parent"
-            android:background="@color/lineColor" />
+            android:background="@color/lineColor"/>
 
         <ImageView
             android:id="@+id/tzo"
             android:layout_width="0dp"
+            android:background="#030A3A"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="upperCenter" />
@@ -137,6 +139,7 @@
         <ImageView
             android:id="@+id/tzt"
             android:layout_width="0dp"
+            android:background="#030A3A"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="upperRight" />
@@ -168,6 +171,7 @@
         <ImageView
             android:id="@+id/toz"
             android:layout_width="0dp"
+            android:background="#030A3A"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="middleLeft" />
@@ -180,6 +184,7 @@
         <ImageView
             android:id="@+id/too"
             android:layout_width="0dp"
+            android:background="#030A3A"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="middleCenter" />
@@ -192,6 +197,7 @@
         <ImageView
             android:id="@+id/tot"
             android:layout_width="0dp"
+            android:background="#030A3A"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="middleRight" />
@@ -222,6 +228,7 @@
         <ImageView
             android:id="@+id/ttz"
             android:layout_width="0dp"
+            android:background="#030A3A"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="bottomLeft" />
@@ -234,6 +241,7 @@
         <ImageView
             android:id="@+id/tto"
             android:layout_width="0dp"
+            android:background="#030A3A"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="bottomCenter" />
@@ -246,6 +254,7 @@
         <ImageView
             android:id="@+id/ttt"
             android:layout_width="0dp"
+            android:background="#030A3A"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="bottomRight" />
