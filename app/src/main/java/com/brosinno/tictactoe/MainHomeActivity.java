@@ -14,6 +14,11 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -101,6 +106,11 @@ public class MainHomeActivity extends AppCompatActivity {
             }
         });
 
+        AdView homePageBannerAd = findViewById(R.id.home_page_banner_ad);
+        MobileAds.initialize(this, initializationStatus -> {
+        });
+        AdRequest homePageBannerAdRequest = new AdRequest.Builder().build();
+        homePageBannerAd.loadAd(homePageBannerAdRequest);
     }
 
 

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="#BCE4BE"
+    android:padding="16dp"
     tools:context=".MainHomeActivity">
 
     <LinearLayout
+        android:id="@+id/ll_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -50,8 +52,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:gravity="center"
             android:layout_marginTop="45dp"
+            android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -67,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="1 Player"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
 
                 <CheckBox
                     android:id="@+id/tplayer"
@@ -75,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="2 Players"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -85,7 +87,7 @@
                 android:layout_height="35dp"
                 android:layout_weight="1"
                 android:hint="difficulty"
-                android:textSize="15sp" >
+                android:textSize="15sp">
 
             </Spinner>
 
@@ -93,20 +95,32 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/start"
-        android:layout_width="170dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_1"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/round"
-        android:onClick="startGame"
-        android:text="start game"
-        android:textColor="#000000"
-        android:textSize="15sp"/>
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <Button
+            android:id="@+id/start"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/round"
+            android:onClick="startGame"
+            android:text="start game"
+            android:textColor="#000000"
+            android:textSize="15sp" />
 
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/home_page_banner_ad"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            app:adSize="SMART_BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+    </LinearLayout>
 </RelativeLayout>
 
 

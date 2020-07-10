@@ -11,6 +11,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+
 import java.util.Random;
 
 public class MainGameActivity extends AppCompatActivity {
@@ -44,6 +49,7 @@ public class MainGameActivity extends AppCompatActivity {
     CharSequence player1 = "Player 1";
     CharSequence player2 = "Player 2";
 
+    private InterstitialAd interstitialAd1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +83,13 @@ public class MainGameActivity extends AppCompatActivity {
         player2TV.setText(player2);
 
         Toast.makeText(this, "" + player1 + "\'s turn", Toast.LENGTH_LONG).show();
+
+        // INTER AD
+        MobileAds.initialize(this);
+        interstitialAd1 = new InterstitialAd(this);
+        interstitialAd1.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd1.loadAd(new AdRequest.Builder().build());
+
 
     }
 
@@ -784,8 +797,17 @@ public class MainGameActivity extends AppCompatActivity {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                reset();
-                finish();
+                if (interstitialAd1.isLoaded()) {
+                    interstitialAd1.show();
+                    interstitialAd1.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdClosed() {
+                            super.onAdClosed();
+                            reset();
+                            finish();
+                        }
+                    });
+                }
             }
         });
 
